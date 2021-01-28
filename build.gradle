@@ -14,8 +14,8 @@ buildscript {
 }
 
 allprojects {
-  group 'com.makeramen'
-  version '2.3.0'
+  group 'com.genexus'
+  version '2.4.0'
   repositories {
     mavenCentral()
     jcenter()

@@ -24,7 +24,7 @@ android {
 
 dependencies {
   compileOnly 'com.squareup.picasso:picasso:2.71828'
-  compileOnly 'androidx.annotation:annotation:1.0.1'
+  compileOnly 'androidx.annotation:annotation:1.0.0'
 }
 
 task androidJavadocs(type: Javadoc) {
@@ -49,52 +49,18 @@ artifacts {
 }
 
 signing {
-  required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+  required { hasProperty("release") && gradle.taskGraph.hasTask("uploadArchives") }
   sign configurations.archives
 }
 
 uploadArchives {
-  repositories.mavenDeployer {
-    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-    repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-      authentication(userName: sonatypeUsername, password: sonatypePassword)
+  repositories {
+    mavenDeployer {
+      repository(url: "${System.env.GENEXUS_REPO}")
     }
+  }
 
-    snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-      authentication(userName: sonatypeUsername, password: sonatypePassword)
-    }
-
-    pom {
-      project {
-        name 'RoundedImageView'
-        packaging 'aar'
-
-        description 'Fast ImageView with support for rounded corners and borders'
-        url 'https://github.com/vinc3m1/RoundedImageView'
-
-        scm {
-          url 'scm:git@github.com:vinc3m1/RoundedImageView.git'
-          connection 'scm:git@github.com:vinc3m1/RoundedImageView.git'
-          developerConnection 'scm:git@github.com:vinc3m1/RoundedImageView.git'
-        }
-
-        licenses {
-          license {
-            name 'The Apache Software License, Version 2.0'
-            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-            distribution 'repo'
-          }
-        }
-
-        developers {
-          developer {
-            id 'vinc3m1'
-            name 'Vince Mi'
-            email 'vince@makeramen.com'
-          }
-        }
-      }
-    }
+  artifacts {
+    archives androidSourcesJar
   }
 }
