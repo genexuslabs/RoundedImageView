@@ -6,7 +6,7 @@ def getGroupName = { ->
 }
 
 def getVersionName = { ->
-	version = "2.4.1"
+	version = "2.4.0"
 	return version
 }
 
@@ -18,7 +18,7 @@ publishing {
 	repositories {
 		maven {
 			name = "GitHubPackages"
-			url = "https://maven.pkg.github.com/jotapeg/RoundedImageView"
+			url = "https://maven.pkg.github.com/genexuslabs/RoundedImageView"
 			credentials {
 				username = project.findProperty("gpr.user")
 				password = project.findProperty("gpr.key")
