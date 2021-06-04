@@ -13,8 +13,8 @@ android {
 	}
 
 	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_7
-		targetCompatibility JavaVersion.VERSION_1_7
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
 	}
 }
 
@@ -49,4 +49,4 @@ signing {
 	sign configurations.archives
 }
 
-apply from: rootProject.file('roundedimageview/publish.gradle')
+apply from: rootProject.file('publish.gradle')

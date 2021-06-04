@@ -2,7 +2,7 @@ apply plugin: 'maven-publish'
 
 def getGroupName = { ->
 	group = "com.genexus"
-	return group // Replace with version Name
+	return group
 }
 
 def getVersionName = { ->
