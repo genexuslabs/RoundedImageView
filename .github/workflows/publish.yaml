@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-java@v2
         with: # Pass parameters to action
           java-version: '11'
-          java-package: jdk
+          distribution: 'adopt'
 
       - name: Build and publish # Used to execute gradle commands
         run: ./gradlew :roundedimageview:assembleRelease :roundedimageview:publish -Pgpr.key=${{ secrets.GITHUB_TOKEN }} -Pgpr.user=$GITHUB_ACTOR
