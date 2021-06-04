@@ -11,11 +11,10 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2 # Use action from marketplace
 
-      - uses: actions/setup-java@v1
+      - uses: actions/setup-java@v2
         with: # Pass parameters to action
-          java-version: '11.0.4'
+          java-version: '11'
           java-package: jdk
-          architecture: x64
 
       - name: Build and publish # Used to execute gradle commands
-        run: gradle :roundedimageview:assembleRelease :roundedimageview:publish # -Pgpr.key=${{ secrets.GITHUB_TOKEN }} -Pgpr.user=$GITHUB_ACTOR
+        run: ./gradlew :roundedimageview:assembleRelease :roundedimageview:publish -Pgpr.key=${{ secrets.GITHUB_TOKEN }} -Pgpr.user=$GITHUB_ACTOR
