@@ -1,5 +1,15 @@
 apply plugin: 'maven-publish'
 
+def getGroupName = { ->
+	group = "com.genexus"
+	return group // Replace with version Name
+}
+
+def getVersionName = { ->
+	version = "2.4.1"
+	return version
+}
+
 def getArtifactId = { ->
 	return "roundedimageview"
 }
@@ -17,9 +27,9 @@ publishing {
 	}
 	publications {
 		bar(MavenPublication) {
-			groupId 'com.genexus'
+			groupId getGroupName()
+			version getVersionName()
 			artifactId getArtifactId()
-			version '2.4.0'
 			artifact("$buildDir/outputs/aar/${getArtifactId()}-release.aar")
 		}
 	}

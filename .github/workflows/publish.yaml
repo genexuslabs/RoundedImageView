@@ -1,0 +1,25 @@
+name: Build & Publish
+
+on: # Defines the events that this action responds to
+  push: # Run whenever new commits are pushed
+    branches: [ master ] # Only if target branch is master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # The container to run this action on
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2 # Use action from marketplace
+
+      - uses: actions/setup-java@v1
+        with: # Pass parameters to action
+          java-version: '11.0.4'
+          java-package: jdk
+          architecture: x64
+
+      - name: Build and publish # Used to execute gradle commands
+        run: gradle \
+          -Pgpr.key=${{ secrets.GITHUB_TOKEN }} \
+          -Pgpr.user=$GITHUB_ACTOR \
+          :roundedimageview:assembleRelease \
+          :roundedimageview:publish
