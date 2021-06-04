@@ -18,4 +18,4 @@ jobs:
           architecture: x64
 
       - name: Build and publish # Used to execute gradle commands
-        run: gradle :roundedimageview:assembleRelease :roundedimageview:publish -Pgpr.key=${{ secrets.GITHUB_TOKEN }} -Pgpr.user=$GITHUB_ACTOR
+        run: gradle :roundedimageview:assembleRelease :roundedimageview:publish # -Pgpr.key=${{ secrets.GITHUB_TOKEN }} -Pgpr.user=$GITHUB_ACTOR
