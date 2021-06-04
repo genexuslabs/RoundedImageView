@@ -1,0 +1,26 @@
+apply plugin: 'maven-publish'
+
+def getArtifactId = { ->
+	return "roundedimageview"
+}
+
+publishing {
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = "https://maven.pkg.github.com/jotapeg/RoundedImageView"
+			credentials {
+				username = project.findProperty("gpr.user")
+				password = project.findProperty("gpr.key")
+			}
+		}
+	}
+	publications {
+		bar(MavenPublication) {
+			groupId 'com.genexus'
+			artifactId getArtifactId()
+			version '2.4.0'
+			artifact("$buildDir/outputs/aar/${getArtifactId()}-release.aar")
+		}
+	}
+}
