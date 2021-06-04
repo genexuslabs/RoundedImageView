@@ -19,7 +19,7 @@ jobs:
 
       - name: Build and publish # Used to execute gradle commands
         run: gradle \
-          -Pgpr.key=${{ secrets.GITHUB_TOKEN }} \
-          -Pgpr.user=$GITHUB_ACTOR \
           :roundedimageview:assembleRelease \
-          :roundedimageview:publish
+          :roundedimageview:publish \
+          -Pgpr.key=${{ secrets.GITHUB_TOKEN }}
+          -Pgpr.user=$GITHUB_ACTOR
