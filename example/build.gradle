@@ -2,19 +2,14 @@ apply plugin: 'com.android.application'
 
 repositories {
   mavenCentral()
-  // maven {
-  //     url 'https://oss.sonatype.org/content/repositories/snapshots/'
-  //     url 'https://oss.sonatype.org/content/repositories/releases/'
-  // }
 }
 
 dependencies {
-  //compile 'com.makeramen:roundedimageview:2.0.0-SNAPSHOT'
   implementation project(':roundedimageview')
   implementation 'com.squareup.picasso:picasso:2.71828'
   implementation 'com.github.bumptech.glide:glide:4.8.0'
   implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-  implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+  implementation 'androidx.appcompat:appcompat:1.4.0-alpha02'
 }
 
 android {
@@ -24,13 +19,13 @@ android {
   defaultConfig {
     applicationId "com.makeramen.roundedimageview.example"
     minSdkVersion 14
-    targetSdkVersion 28
+    targetSdkVersion 30
     versionCode 1
     versionName version
   }
 
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 }

@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-	compileOnly 'com.squareup.picasso:picasso:2.71828'
+	compileOnly 'com.squareup.picasso:picasso:2.8'
 	compileOnly 'androidx.annotation:annotation:1.0.0'
 }
 
@@ -48,17 +48,5 @@ signing {
 	required { hasProperty("release") && gradle.taskGraph.hasTask("uploadArchives") }
 	sign configurations.archives
 }
-
-//uploadArchives {
-//  repositories {
-//    mavenDeployer {
-//      repository(url: "${System.env.GENEXUS_REPO}")
-//    }
-//  }
-//
-//  artifacts {
-//    archives androidSourcesJar
-//  }
-//}
 
 apply from: rootProject.file('roundedimageview/publish.gradle')
