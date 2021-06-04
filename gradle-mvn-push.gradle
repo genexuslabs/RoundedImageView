@@ -1,0 +1,11 @@
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: "${System.env.GENEXUS_REPO}")
+		}
+	}
+
+	artifacts {
+		archives androidSourcesJar
+	}
+}

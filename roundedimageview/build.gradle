@@ -1,66 +1,52 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
 apply plugin: 'signing'
 
-def sonatypeUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : ""
-def sonatypePassword = project.hasProperty('sonatypePassword') ? sonatypePassword : ""
-
 android {
-  compileSdkVersion rootProject.ext.compileSdkVersion
-  buildToolsVersion rootProject.ext.buildToolsVersion
+	compileSdkVersion rootProject.ext.compileSdkVersion
+	buildToolsVersion rootProject.ext.buildToolsVersion
 
-  defaultConfig {
-    minSdkVersion 14
-    consumerProguardFiles 'release-proguard.cfg'
-    versionCode 1
-    versionName version
-  }
+	defaultConfig {
+		minSdkVersion 14
+		consumerProguardFiles 'release-proguard.cfg'
+		versionCode 1
+		versionName version
+	}
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_7
-    targetCompatibility JavaVersion.VERSION_1_7
-  }
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
 }
 
 dependencies {
-  compileOnly 'com.squareup.picasso:picasso:2.71828'
-  compileOnly 'androidx.annotation:annotation:1.0.0'
+	compileOnly 'com.squareup.picasso:picasso:2.8'
+	compileOnly 'androidx.annotation:annotation:1.0.0'
 }
 
 task androidJavadocs(type: Javadoc) {
-  source = android.sourceSets.main.java.source
+	source = android.sourceSets.main.java.source
 }
 
 task androidJavadocsJar(type: Jar) {
-  classifier = 'javadoc'
-  //basename = artifact_id
-  from androidJavadocs.destinationDir
+	classifier = 'javadoc'
+	//basename = artifact_id
+	from androidJavadocs.destinationDir
 }
 
 task androidSourcesJar(type: Jar) {
-  classifier = 'sources'
-  //basename = artifact_id
-  from android.sourceSets.main.java.source
+	classifier = 'sources'
+	//basename = artifact_id
+	from android.sourceSets.main.java.source
 }
 
 artifacts {
-  archives androidSourcesJar
-  archives androidJavadocsJar
+	archives androidSourcesJar
+	archives androidJavadocsJar
 }
 
 signing {
-  required { hasProperty("release") && gradle.taskGraph.hasTask("uploadArchives") }
-  sign configurations.archives
+	required { hasProperty("release") && gradle.taskGraph.hasTask("uploadArchives") }
+	sign configurations.archives
 }
 
-uploadArchives {
-  repositories {
-    mavenDeployer {
-      repository(url: "${System.env.GENEXUS_REPO}")
-    }
-  }
-
-  artifacts {
-    archives androidSourcesJar
-  }
-}
+apply from: rootProject.file('publish.gradle')
